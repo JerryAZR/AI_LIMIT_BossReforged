@@ -1,0 +1,478 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<RootNamespace>BossReforged</RootNamespace>
+		<LangVersion>default</LangVersion>
+		<IsPackable>false</IsPackable>
+		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<FileVersion>1.0.0.0</FileVersion>
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<AssemblyName>BossReforged</AssemblyName>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="Assembly-CSharp-firstpass">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Assembly-CSharp-firstpass.dll</HintPath>
+		</Reference>
+		<Reference Include="Assembly-CSharp">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppAutoCamera">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppAutoCamera.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppAutoCaneraEditor">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppAutoCaneraEditor.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppBehaviorDesigner.Runtime">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppBehaviorDesigner.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppBezierSolution">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppBezierSolution.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppBoxophobic.AtmosphericHeightFog.Runtime">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppBoxophobic.AtmosphericHeightFog.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppBoxophobic.Utils.Scripts">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppBoxophobic.Utils.Scripts.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppCinemachine">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppCinemachine.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2Cppcom.rlabrecque.steamworks.net">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2Cppcom.rlabrecque.steamworks.net.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2Cppcom.saladgamer.volumetriclightbeam">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2Cppcom.saladgamer.volumetriclightbeam.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2Cppcom.thenakeddev.fsr.Runtime">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2Cppcom.thenakeddev.fsr.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2Cppcom.thenakeddev.fsr.Runtime.HDRP">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2Cppcom.thenakeddev.fsr.Runtime.HDRP.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppCriMw.CriWare.Runtime">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppCriMw.CriWare.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppCriMw.CriWare.Vp9.Runtime">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppCriMw.CriWare.Vp9.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppDevelopDebug">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppDevelopDebug.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppDOTween">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppDOTween.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppDOTweenPro">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppDOTweenPro.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppEpicAssembly">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppEpicAssembly.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppFewClicksDev.Core.Runtime">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppFewClicksDev.Core.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppGameplayInterface">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppGameplayInterface.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppHBAO.HighDefinition.Runtime">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppHBAO.HighDefinition.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppHBAO.Runtime">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppHBAO.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppHLOD.Addressable">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppHLOD.Addressable.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppHLOD">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppHLOD.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppHLODExtendRuntime">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppHLODExtendRuntime.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppInputCodeGen">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppInputCodeGen.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppInputSystem.Samples.Visualizers">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppInputSystem.Samples.Visualizers.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppKWS">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppKWS.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppLeanTween">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppLeanTween.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppMagicaClothV2">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppMagicaClothV2.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppMono.Security">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppMono.Security.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2Cppmscorlib">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppNaughtyAttributes.Core">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppNaughtyAttributes.Core.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppPerfectCulling">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppPerfectCulling.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppRafireAssembly">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppRafireAssembly.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppRFLib_DotNet_2018">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppRFLib_DotNet_2018.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSearchableEnum">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppSearchableEnum.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSenseGame.Build">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppSenseGame.Build.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSenseGame.Event">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppSenseGame.Event.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSenseGame.Logic">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppSenseGame.Logic.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSenseGame.MonoEx">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppSenseGame.MonoEx.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSenseGame.PostProcessing">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppSenseGame.PostProcessing.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSenseGame.Profiler">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppSenseGame.Profiler.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSenseGame.Tasks">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppSenseGame.Tasks.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSirenix.OdinInspector.Attributes">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppSirenix.OdinInspector.Attributes.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSystem.Configuration">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppSystem.Configuration.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSystem.Core">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppSystem.Core.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSystem">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppSystem.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSystem.Numerics">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppSystem.Numerics.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSystem.Xml">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppSystem.Xml.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppUltimateMathLibrary">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppUltimateMathLibrary.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppUniTask.Addressables">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppUniTask.Addressables.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppUniTask">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppUniTask.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppWireBuider_Runtime">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2CppWireBuider_Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2Cpp__Generated">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Il2Cpp__Generated.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.Addressables">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.Addressables.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.AI.Navigation">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.AI.Navigation.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.Animation.Rigging">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.Animation.Rigging.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.Burst">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.Burst.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.Burst.Unsafe">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.Burst.Unsafe.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.Collections">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.Collections.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.Collections.LowLevel.ILSupport">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.FilmInternalUtilities">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.FilmInternalUtilities.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.InputSystem">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.InputSystem.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.InputSystem.ForUI">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.InputSystem.ForUI.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.Mathematics">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.Mathematics.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.MeshSync">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.MeshSync.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.Polybrush">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.Polybrush.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.RenderPipelines.Core.Runtime">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.RenderPipelines.HighDefinition.Config.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.RenderPipelines.HighDefinition.Runtime">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.ResourceManager">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.ResourceManager.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.Splines">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.Splines.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.TextMeshPro">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.TextMeshPro.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.Timeline">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.Timeline.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.VisualEffectGraph.Runtime">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\Unity.VisualEffectGraph.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AccessibilityModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.AccessibilityModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AIModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.AIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AndroidJNIModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.AndroidJNIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AnimationModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.AnimationModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.ARModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.ARModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AssetBundleModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.AssetBundleModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AudioModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.AudioModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.ClothModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.ClothModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.ContentLoadModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.ContentLoadModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.CrashReportingModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.CrashReportingModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.DirectorModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.DirectorModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.DSPGraphModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.DSPGraphModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.GameCenterModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.GameCenterModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.GIModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.GIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.GridModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.GridModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.HotReloadModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.HotReloadModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.ImageConversionModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.ImageConversionModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.IMGUIModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.IMGUIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.InputLegacyModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.InputLegacyModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.InputModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.InputModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.JSONSerializeModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.JSONSerializeModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.LocalizationModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.LocalizationModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.NVIDIAModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.NVIDIAModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.ParticleSystemModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.ParticleSystemModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.PerformanceReportingModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.PerformanceReportingModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.Physics2DModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.Physics2DModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.PhysicsModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.PhysicsModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.ProfilerModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.ProfilerModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.PropertiesModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.PropertiesModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.ScreenCaptureModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.ScreenCaptureModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.SharedInternalsModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.SharedInternalsModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.SpriteMaskModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.SpriteMaskModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.SpriteShapeModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.SpriteShapeModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.StreamingModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.StreamingModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.SubstanceModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.SubstanceModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.SubsystemsModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.SubsystemsModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.TerrainModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.TerrainModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.TerrainPhysicsModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.TextCoreFontEngineModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.TextCoreTextEngineModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.TextRenderingModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.TextRenderingModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.TilemapModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.TilemapModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.TLSModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.TLSModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UI">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UIElementsModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.UIElementsModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UIModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.UIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UmbraModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.UmbraModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UnityAnalyticsModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UnityConnectModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.UnityConnectModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UnityCurlModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.UnityCurlModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UnityTestProtocolModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UnityWebRequestAudioModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UnityWebRequestModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UnityWebRequestTextureModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UnityWebRequestWWWModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.VehiclesModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.VehiclesModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.VFXModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.VFXModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.VideoModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.VideoModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.VRModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.VRModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.WindModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.WindModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.XRModule">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\Il2CppAssemblies\UnityEngine.XRModule.dll</HintPath>
+		</Reference>
+		<Reference Include="MelonLoader">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\net6\MelonLoader.dll</HintPath>
+		</Reference>
+		<Reference Include="0Harmony">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\net6\0Harmony.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppInterop.Runtime">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppInterop.Common">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\AI Limit\MelonLoader\net6\Il2CppInterop.Common.dll</HintPath>
+		</Reference>
+
+	</ItemGroup>
+
+	<PropertyGroup>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="Core.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+	
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="COPY &quot;$(TargetPath)&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\AI Limit\Mods&quot;" />
+	</Target>
+</Project>
