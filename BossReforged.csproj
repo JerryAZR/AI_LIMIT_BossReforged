@@ -465,7 +465,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Compile Include="BossReviveButton.cs" />
 		<Compile Include="Core.cs" />
+		<Compile Include="MonsterOverrideLoader.cs" />
 	</ItemGroup>
 
 	<ItemGroup>

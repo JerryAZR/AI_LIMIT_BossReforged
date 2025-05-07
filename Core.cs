@@ -1,93 +1,41 @@
-﻿using MelonLoader;
-using HarmonyLib;
+﻿using HarmonyLib;
+using Il2Cpp;
 using Il2CppGameDef;
 using Il2Cpptabtoy;
-using Il2Cpp;
-using Il2CppSceneSettingDef;
+using MelonLoader;
 using UnityEngine;
-using Newtonsoft.Json;
 using UnityEngine.UI;
-using UnityEngine.Events;
-using Il2CppArchiveDef;
 
 [assembly: MelonInfo(typeof(BossReforged.Core), "BossReforged", "1.0.0", "Jerry", null)]
 [assembly: MelonGame("SenseGames", "AILIMIT")]
 
 namespace BossReforged {
     public class Core : MelonMod {
+        public static Dictionary<int, MonsterOverrideEntry> MonsterOverrides;
+        public static Dictionary<int, MonsterOverrideEntry> MonsterFullReplaces;
 
-        static JsonSerializerSettings serializerSettings = new JsonSerializerSettings {
-            ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-            NullValueHandling = NullValueHandling.Include
-        };
+        //static JsonSerializerSettings serializerSettings = new JsonSerializerSettings {
+        //    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+        //    NullValueHandling = NullValueHandling.Include
+        //};
+
         public override void OnInitializeMelon() {
+            MonsterOverrides = MonsterOverrideLoader.LoadOverrides("UserData/BossReforged/MonsterOverrides.json");
+            MonsterFullReplaces = new();
             LoggerInstance.Msg("Initialized.");
         }
 
-        //[HarmonyPatch(typeof(ActorManager), "SpawnMonster")]
-        //public static class SpawnMonsterPatch {
-        //    private static int _spawnID = 0;
-
-        //    public static void Prefix() {
-        //        Melon<Core>.Logger.Msg($"[{Time.frameCount}]: Pre-ActorManager.SpawnMonster");
-        //    }
-        //    public static void Postfix(Monster __result, GameObject monsterRootGameObject, Il2CppGameDef.MonsterDefine monsterDefine, Il2CppSceneSettingDef.ActorSetting monsterSetting, Il2CppSceneSettingDef.SceneSetting sceneSetting, Il2CppSystem.Action<Il2Cpp.Monster> onBehaviorTreeLoaded) {
-        //        var log = new {
-        //            Time = DateTime.Now.ToString("O"),
-        //            GameObjectName = monsterRootGameObject?.name,
-        //            MonsterDefine = monsterDefine,
-        //            ActorSetting = monsterSetting,
-        //            SceneSetting = sceneSetting,
-        //            CallbackInfo = onBehaviorTreeLoaded == null ? "null" : $"Target={onBehaviorTreeLoaded.Target}, Method={onBehaviorTreeLoaded.Method}"
-        //        };
-
-        //        string json = JsonConvert.SerializeObject(log, Formatting.Indented,
-        //            new JsonSerializerSettings {
-        //                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-        //                NullValueHandling = NullValueHandling.Include
-        //            });
-
-        //        string dir = Path.Combine("UserData", "SpawnMonsterCallLogs", $"{__result?.gameObject.scene.name}");
-        //        Directory.CreateDirectory(dir);
-
-        //        string fileName = $"{monsterDefine.Name}_{_spawnID++}.json";
-        //        //File.WriteAllText(Path.Combine(dir, fileName), json);
-        //        Melon<Core>.Logger.Msg($"Post-ActorManager.SpawnMonster({monsterDefine.Name})");
-        //    }
-        //}
-
-        //[HarmonyPatch(typeof(LevelLoadManager), "Load")]
-        //public static class LevelLoadPatch {
-        //    public static void Prefix() {
-        //        Melon<Core>.Logger.Msg($"[{Time.frameCount}]: Pre-LevelLoadManager.Load");
-        //    }
-        //    public static void Postfix() {
-        //        Melon<Core>.Logger.Msg("Post-LevelLoadManager.Load");
-        //    }
-        //}
-
-        //[HarmonyPatch(typeof(InteractiveManager), "GetActorStateModelByID")]
-        //public static class GetMonsterStateModelPatch {
-        //    public static void Postfix(int levelID, int monsterID, ref MonsterStateModel __result) {
-        //        Melon<Core>.Logger.Msg($"InteractiveManager.GetActorStateModelByID(levelID={levelID}, monsterID={monsterID})");
-        //        Melon<Core>.Logger.Msg($"result={JsonConvert.SerializeObject(__result, Formatting.Indented, serializerSettings)}");
-        //        //__result.IsDead = false;
-        //    }
-
-        //}
-
         [HarmonyPatch(typeof(BranchView), "OnEnable")]
         public static class BranchViewOnEnablePatch {
-            const string BOSS_REVIVE_BTN = "BossRevive";
             public static void Postfix(BranchView __instance) {
-                Transform reviveBtn = __instance.ButtonGroup.transform.Find(BOSS_REVIVE_BTN);
-                reviveBtn ??= CreateButton(__instance);
-                reviveBtn.GetComponentInChildren<Text>().text = BOSS_REVIVE_BTN;
-
                 Melon<Core>.Logger.Msg($"CurTransferID={Transfer.CurTransferID}");
+                BossReviveButton reviveBtn = __instance.ButtonGroup.GetComponentInChildren<BossReviveButton>(includeInactive: true);
+                reviveBtn ??= CreateButton(__instance);
+                reviveBtn.SetBranch(Transfer.CurTransferID);
+                Melon<Core>.Logger.Msg($"Button updated.");
             }
 
-            private static Transform CreateButton(BranchView __instance) {
+            private static BossReviveButton CreateButton(BranchView __instance) {
                 Button template = __instance.transform.GetComponentInChildren<Button>();
                 if (template == null) {
                     Melon<Core>.Logger.Error("Cannot find template button under BranchView.");
@@ -97,27 +45,60 @@ namespace BossReforged {
                 Melon<Core>.Logger.Msg("Initializing boss revive button on first activation");
 
                 Button newButton = GameObject.Instantiate(template, template.transform.parent);
-                newButton.gameObject.name = BOSS_REVIVE_BTN;
-                newButton.transform.SetAsLastSibling();
-                newButton.onClick.RemoveAllListeners();
-                newButton.onClick.AddListener((UnityAction)ButtonClickHandler);
-                return newButton.transform;
+                BossReviveButton reviveBtn = newButton.gameObject.AddComponent<BossReviveButton>();
+                reviveBtn.Button = newButton;
+                reviveBtn.transform.SetAsLastSibling();
+                return reviveBtn;
             }
+        }
 
-            public static void ButtonClickHandler() {
-                Melon<Core>.Logger.Msg($"{BOSS_REVIVE_BTN} Clicked.");
-
-                if (LevelLoadManager.Instance.CurLevelRoot.TryGetMonsterInstanceIdByDefineId(1204, out int id)) {
-                    Melon<Core>.Logger.Msg($"Found L32-明净骑士BOSS (instanceID={id})");
-
-                    TransferDefine td = GlobalConfig.ConfigData.GetTransferByID(Transfer.CurTransferID);
-                    var levelDict = InteractiveManager.Instance.MonsterStateDic[td.LevelID];
-                    Melon<Core>.Logger.Msg($"MonsterState={JsonConvert.SerializeObject(levelDict[id], Formatting.Indented, serializerSettings)}");
-                    levelDict[id].IsDead = false;
-                    //LevelLoadManager.Instance.Load(td.LevelID);
-                    ActorNodeManager.Instance.LoadMonster(id);
+        [HarmonyPatch(typeof(Config), "Deserialize", new System.Type[] { typeof(Il2CppGameDef.MonsterDefine), typeof(DataReader) })]
+        public static class MonsterOverridePatch {
+            static void Postfix(ref Il2CppGameDef.MonsterDefine ins) {
+                if (MonsterOverrides.TryGetValue(ins.ID, out MonsterOverrideEntry entry)) {
+                    if (entry.FullReplace.HasValue) {
+                        MonsterFullReplaces[ins.ID] = entry;
+                    } else {
+                        if (entry.HP.HasValue) {
+                            Melon<Core>.Logger.Msg($"Override {ins.Name} HP {ins.nHP} -> {entry.HP.Value}");
+                            ins.nHP = entry.HP.Value;
+                        }
+                        if (entry.BaseDamage.HasValue) {
+                            Melon<Core>.Logger.Msg($"Override {ins.Name} base damage {ins.nBasePhysicsDamage} -> {entry.BaseDamage.Value}");
+                            ins.nBasePhysicsDamage = entry.BaseDamage.Value;
+                        }
+                    }
                 }
             }
         }
+
+        [HarmonyPatch(typeof(Config), "GetMonsterByID")]
+        public static class GetMonsterByIdPatch {
+            static void Postfix(Config __instance, ref Il2CppGameDef.MonsterDefine __result, int ID) {
+                if (MonsterFullReplaces.TryGetValue(ID, out MonsterOverrideEntry replacement)) {
+                    if (replacement.FullReplace.Value == ID) return; // Prevent infinite recursion 
+                    Il2CppGameDef.MonsterDefine newMD = __instance.GetMonsterByID(replacement.FullReplace.Value);
+                    __result = newMD.MemberwiseClone().Cast<Il2CppGameDef.MonsterDefine>();
+
+                    __result.ID = ID;
+                    __result.NPCMonster = false;
+                    if (replacement.HP.HasValue) {
+                        __result.nHP = replacement.HP.Value;
+                    }
+                    if (replacement.BaseDamage.HasValue) {
+                        __result.nBasePhysicsDamage = replacement.BaseDamage.Value;
+                    }
+                }
+            }
+
+        }
+
+        //[HarmonyPatch(typeof(InteractiveManager), "GetInteractiveStateModelByID")]
+        //public static class InteractiveStatePatch {
+        //    static void Postfix(InteractiveStateModel __result, int id) {
+        //        Melon<Core>.Logger.Msg($"GetInteractiveStateModelByID({id}) ->");
+        //        Melon<Core>.Logger.Msg(JsonConvert.SerializeObject(__result));
+        //    }
+        //}
     }
 }
