@@ -6,7 +6,7 @@ using MelonLoader;
 using UnityEngine;
 using UnityEngine.UI;
 
-[assembly: MelonInfo(typeof(BossReforged.Core), "BossReforged", "1.0.0", "Jerry", null)]
+[assembly: MelonInfo(typeof(BossReforged.Core), "BossReforged", "1.0.1", "Jerry", null)]
 [assembly: MelonGame("SenseGames", "AILIMIT")]
 
 namespace BossReforged {
@@ -72,12 +72,31 @@ namespace BossReforged {
             }
         }
 
+        [HarmonyPatch(typeof(Config), "Deserialize", new System.Type[] { typeof(Il2CppGameDef.MonsterDropDefine), typeof(DataReader) })]
+        public static class MonsterDropOverridePatch {
+            static DropInfo UrsulaNuclei = new DropInfo {
+                ID = 11,
+                Count = 1,
+                Weight = 10000,
+                Mode = false,
+                Once = false,
+                AdditionalItemId = 0
+            };
+            static void Postfix(ref Il2CppGameDef.MonsterDropDefine ins) {
+                if (ins.ID == 260) {
+                    // Ursula 2nd form
+                    ins.DropAccessoryList = new();
+                    ins.DropAccessoryList.Add(UrsulaNuclei);
+                    ins.DropAccessoryList.Add(null);
+                }
+            }
+        }
+
         [HarmonyPatch(typeof(Config), "GetMonsterByID")]
         public static class GetMonsterByIdPatch {
             static void Postfix(Config __instance, ref Il2CppGameDef.MonsterDefine __result, int ID) {
                 if (MonsterFullReplaces.TryGetValue(ID, out MonsterOverrideEntry replacement)) {
-                    if (replacement.FullReplace.Value == ID) return; // Prevent infinite recursion 
-                    Il2CppGameDef.MonsterDefine newMD = __instance.GetMonsterByID(replacement.FullReplace.Value);
+                    Il2CppGameDef.MonsterDefine newMD = __instance._MonsterByID[replacement.FullReplace.Value];
                     __result = newMD.MemberwiseClone().Cast<Il2CppGameDef.MonsterDefine>();
 
                     __result.ID = ID;

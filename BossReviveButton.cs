@@ -58,7 +58,8 @@ namespace BossReforged {
                     AllBosses = new List<BossReviveInfo> {
                         new BossReviveInfo { ID = 1202 },   // L1-迷失的枪兵 罗尔
                         new BossReviveInfo { ID = 120202 }, // L1-罗尔二阶段
-                    }
+                    },
+                    Reload = true
                 }
             },
             {
@@ -74,7 +75,8 @@ namespace BossReforged {
                 new BranchReviveInfo {
                     AllBosses = new List<BossReviveInfo> {
                         new BossReviveInfo { ID = 1203 },   // L2-恐慌收割者
-                    }
+                    },
+                    Reload = true
                 }
             },
             {
@@ -83,7 +85,8 @@ namespace BossReforged {
                     AllBosses = new List<BossReviveInfo> {
                         new BossReviveInfo { ID = 120501 },
                         new BossReviveInfo { ID = 120502 },
-                    }
+                    },
+                    Reload = true
                 }
             },
             {
@@ -164,7 +167,8 @@ namespace BossReforged {
                     AllBosses = new List<BossReviveInfo> {
                         new BossReviveInfo { ID = 1206 },   // L54-Boss-洛希德
                         new BossReviveInfo { ID = 120602 }, // L54-Boss-洛希德二阶段
-                    }
+                    },
+                    Reload = true
                 }
             },
             {
@@ -180,7 +184,8 @@ namespace BossReforged {
                 new BranchReviveInfo {
                     AllBosses = new List<BossReviveInfo> {
                         new BossReviveInfo { ID = 120701 },  // L7-深渊哀后BOSS
-                    }
+                    },
+                    Reload = true
                 }
             },
             {
