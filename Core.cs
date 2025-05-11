@@ -74,20 +74,16 @@ namespace BossReforged {
 
         [HarmonyPatch(typeof(Config), "Deserialize", new System.Type[] { typeof(Il2CppGameDef.MonsterDropDefine), typeof(DataReader) })]
         public static class MonsterDropOverridePatch {
-            static DropInfo UrsulaNuclei = new DropInfo {
-                ID = 11,
-                Count = 1,
-                Weight = 10000,
-                Mode = false,
-                Once = false,
-                AdditionalItemId = 0
-            };
+            static MonsterDropDefine UrsulaDrops = null;
+            static MonsterDropDefine MutatedDrops = null;
             static void Postfix(ref Il2CppGameDef.MonsterDropDefine ins) {
-                if (ins.ID == 260) {
-                    // Ursula 2nd form
-                    ins.DropAccessoryList = new();
-                    ins.DropAccessoryList.Add(UrsulaNuclei);
-                    ins.DropAccessoryList.Add(null);
+                if (ins.ID == 260 || ins.ID == 261) {
+                    if (ins.ID == 260) UrsulaDrops = ins;
+                    else MutatedDrops = ins;
+                    // Ursula 2nd form dropn list update
+                    if (UrsulaDrops != null && MutatedDrops != null) {
+                        UrsulaDrops.DropAccessoryList = MutatedDrops.DropAccessoryList;
+                    }
                 }
             }
         }

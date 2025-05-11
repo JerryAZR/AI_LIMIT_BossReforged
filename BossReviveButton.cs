@@ -184,6 +184,7 @@ namespace BossReforged {
                 new BranchReviveInfo {
                     AllBosses = new List<BossReviveInfo> {
                         new BossReviveInfo { ID = 120701 },  // L7-深渊哀后BOSS
+                        new BossReviveInfo { ID = 120702 },  // L7-深渊哀后二阶段BOSS
                     },
                     Reload = true
                 }
@@ -263,15 +264,6 @@ namespace BossReforged {
                     var levelDict = InteractiveManager.Instance.MonsterStateDic[td.LevelID];
                     //Melon<Core>.Logger.Msg(JsonConvert.SerializeObject(levelDict[id]));
                     levelDict[id].IsDead = false;
-                    // Special case handling
-                    switch (boss.ID) {
-                        case 120502: // 厄休拉二阶段
-                            MonsterDropDefine drops = GlobalConfig.ConfigData.GetMonsterDropByID(md.DropID);
-                            MonsterDropDefine additionalDrops = GlobalConfig.ConfigData.GetMonsterDropByID(261); // L24-高阶步行者（厄休拉变的）
-                            drops.DropAccessoryList = additionalDrops.DropAccessoryList;
-                            break;
-                        default: break;
-                    }
                     if (CurrReviveInfo.Reload == false) ActorNodeManager.Instance.LoadMonster(id);
                 } else {
                     Melon<Core>.Logger.Warning($"Cannot find instance of boss {md?.Name}");
