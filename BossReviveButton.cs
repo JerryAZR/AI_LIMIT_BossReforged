@@ -144,6 +144,15 @@ namespace BossReforged {
                 }
             },
             {
+                5502, // 净灵阶梯
+                new BranchReviveInfo {
+                    AllBosses = new List<BossReviveInfo> {
+                        new BossReviveInfo { ID = 1214 },   // L51-BOSS-四手
+                    },
+                    Reload = true
+                }
+            },
+            {
                 5506, // 献晶所
                 new BranchReviveInfo {
                     AllBosses = new List<BossReviveInfo> {
@@ -269,10 +278,18 @@ namespace BossReforged {
                     Melon<Core>.Logger.Warning($"Cannot find instance of boss {md?.Name}");
                 }
                 if (CurrReviveInfo.Reload) {
-                    BlackScreen.Instance.ShowBlackScreenAndDoAction((System.Action)(() => LevelLoadManager.Instance.Load(
-                        td.LevelID,
-                        (System.Action)(() => BlackScreen.Instance.HideBlackScreen(true))
-                    )));
+                    //System.Action HideLoadingAction = ViewManager.Instance.HideLastView;
+                    //System.Action<UIBehaviour> LoadLevelAction = (_) => LevelLoadManager.Instance.Load(td.LevelID, HideLoadingAction);
+                    //ViewManager.Instance.Show(UIView.LoadingView, callBack: LoadLevelAction);
+                    try {
+                        BlackScreen.Instance.ShowBlackScreenAndDoAction((System.Action)(() => LevelLoadManager.Instance.Load(
+                            td.LevelID,
+                            (System.Action)(() => BlackScreen.Instance.HideBlackScreen(true))
+                        )));
+                    } catch (Exception ex) {
+                        LevelLoadManager.Instance.Load(td.LevelID);
+                        Melon<Core>.Logger.Warning($"Error when trying to show loading view: {ex}");
+                    }
                 }
             }
             //LevelLoadManager.Instance.CurLevelRoot.ResetNPC(false);
