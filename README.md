@@ -14,7 +14,7 @@ Also supports optional boss stat overrides, such as HP and base damage.
 
 2. Drop the `BossReforged.dll` into your `Mods` folder.
 
-3. (Optional) Place `MonsterOverrides.json` in the `UserData/BossReforged/` directory.
+3. (Optional) Place `MonsterOverrides.json/toml` in the `UserData/BossReforged/` directory.
 
 ## 📝 Usage
 
@@ -65,5 +65,25 @@ To override boss stats, create a JSON config in the following format:
 * **Name** is used only as a label in the config for clarity (not in-game).
 * **HP** and **BaseDamage** are optional overrides
 * **FullReplace** is used to fully replace one type of monster with another
+
+Alternatively, Create a TOML file:
+
+`UserData/BossReforged/MonsterOverrides.toml`
+
+```toml
+# L24-剧情-亚德米勒
+[50007]
+HP = 10000
+BaseDamage = 100
+
+# 沙包机器人
+[99998]
+HP = 10000
+FullReplace = 50007
+```
+
+* **Section header** ([50007]) is the MonsterDefine.ID.
+* **Comments** (# ...) can be used for labeling; do not use a **Name** field.
+* Fields are the same as JSON: **HP**, **BaseDamage**, **FullReplace**.
 
 See the [monster data dump](GameDataDumps/Monster.json) for monster IDs and original values.

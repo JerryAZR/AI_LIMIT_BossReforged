@@ -49,6 +49,24 @@ namespace BossReforged {
                 }
                 return "Boss";
             }
+
+            public static void FindAllMonsterInstanceIdByDefineId(int defineID, List<int> instances) {
+                foreach (MonsterNode node in LevelLoadManager.Instance.CurLevelRoot.monsterNodes) {
+                    if (node?.DefineID == defineID) {
+                        instances.Add(node.InstanceID);
+                    }
+                }
+            }
+
+            public List<int> GetBossInstances() {
+                List<int> bossInstances = new();
+
+                foreach (BossReviveInfo boss in AllBosses) {
+                    FindAllMonsterInstanceIdByDefineId(boss.ID, bossInstances);
+                }
+
+                return bossInstances;
+            }
         }
 
         private static readonly Dictionary<int, BranchReviveInfo> BossReviveBranches = new() {
@@ -206,7 +224,8 @@ namespace BossReforged {
                         new BossReviveInfo { ID = 120802 },  // L8-圣树守卫_双刀_BOSS
                         new BossReviveInfo { ID = 120803 },  // L8-圣树守卫_长刀_BOSS
                         new BossReviveInfo { ID = 120804 },  // L8-圣树守卫_圣树长枪_BOSS
-                    }
+                    },
+                    Reload=true
                 }
             },
             {
@@ -242,13 +261,13 @@ namespace BossReforged {
             bool needButton = false;
             if (BossReviveBranches.TryGetValue(branchID, out CurrReviveInfo)) {
                 TransferDefine td = GlobalConfig.ConfigData.GetTransferByID(Transfer.CurTransferID);
-                foreach (BossReviveInfo boss in CurrReviveInfo.AllBosses) {
-                    if (LevelLoadManager.Instance.CurLevelRoot.TryGetMonsterInstanceIdByDefineId(boss.ID, out int id)) {
-                        MonsterStateModel state = InteractiveManager.Instance.GetActorStateModelByID(td.LevelID, id);
-                        if (state != null && state.IsDead) {
-                            needButton = true;
-                        }
-                    }                    
+                List<int> bossInstances = CurrReviveInfo.GetBossInstances();
+                Melon<Core>.Logger.Msg($"Found {bossInstances.Count} boss instances at branch {Transfer.CurTransferID}.");
+                foreach (int instance in bossInstances) {
+                    MonsterStateModel state = InteractiveManager.Instance.GetActorStateModelByID(td.LevelID, instance);
+                    if (state != null && state.IsDead) {
+                        needButton = true;
+                    }
                 }
                 gameObject.SetActive(needButton);
                 GetComponentInChildren<Text>().text = $"{COMBAT_ICON} {CurrReviveInfo.GetName()}";
@@ -266,31 +285,22 @@ namespace BossReforged {
 
             TransferDefine td = GlobalConfig.ConfigData.GetTransferByID(Transfer.CurTransferID);
 
-            foreach (BossReviveInfo boss in CurrReviveInfo.AllBosses) {
-                Il2CppGameDef.MonsterDefine md = GlobalConfig.ConfigData.GetMonsterByID(boss.ID);
-                if (LevelLoadManager.Instance.CurLevelRoot.TryGetMonsterInstanceIdByDefineId(boss.ID, out int id)) {
-                    Melon<Core>.Logger.Msg($"Found {md.Name} (instanceID={id}) near {td.Name}");
-                    var levelDict = InteractiveManager.Instance.MonsterStateDic[td.LevelID];
-                    //Melon<Core>.Logger.Msg(JsonConvert.SerializeObject(levelDict[id]));
-                    levelDict[id].IsDead = false;
-                    if (CurrReviveInfo.Reload == false) ActorNodeManager.Instance.LoadMonster(id);
-                } else {
-                    Melon<Core>.Logger.Warning($"Cannot find instance of boss {md?.Name}");
-                }
-                if (CurrReviveInfo.Reload) {
-                    //System.Action HideLoadingAction = ViewManager.Instance.HideLastView;
-                    //System.Action<UIBehaviour> LoadLevelAction = (_) => LevelLoadManager.Instance.Load(td.LevelID, HideLoadingAction);
-                    //ViewManager.Instance.Show(UIView.LoadingView, callBack: LoadLevelAction);
-                    try {
-                        BlackScreen.Instance.ShowBlackScreenAndDoAction((System.Action)(() => LevelLoadManager.Instance.Load(
-                            td.LevelID,
-                            (System.Action)(() => BlackScreen.Instance.HideBlackScreen(true))
-                        )));
-                    } catch (Exception ex) {
-                        LevelLoadManager.Instance.Load(td.LevelID);
-                        Melon<Core>.Logger.Warning($"Error when trying to show loading view: {ex}");
-                    }
-                }
+            List<int> bossInstances = CurrReviveInfo.GetBossInstances();
+            var levelDict = InteractiveManager.Instance.MonsterStateDic[td.LevelID];
+
+            foreach (int instanceId in bossInstances) {
+                levelDict[instanceId].IsDead = false;
+                if (CurrReviveInfo.Reload == false) ActorNodeManager.Instance.LoadMonster(instanceId);
+            }
+
+            if (CurrReviveInfo.Reload) {
+                //System.Action HideLoadingAction = ViewManager.Instance.HideLastView;
+                //System.Action<UIBehaviour> LoadLevelAction = (_) => LevelLoadManager.Instance.Load(td.LevelID, HideLoadingAction);
+                //ViewManager.Instance.Show(UIView.LoadingView, callBack: LoadLevelAction);
+                BlackScreen.Instance.ShowBlackScreenAndDoAction((System.Action)(() => LevelLoadManager.Instance.Load(
+                    td.LevelID,
+                    (System.Action)(() => BlackScreen.Instance.HideBlackScreen(true))
+                )));
             }
             //LevelLoadManager.Instance.CurLevelRoot.ResetNPC(false);
             //LevelLoadManager.Instance.CurLevelRoot.ResetMonster();

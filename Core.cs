@@ -20,7 +20,7 @@ namespace BossReforged {
         //};
 
         public override void OnInitializeMelon() {
-            MonsterOverrides = MonsterOverrideLoader.LoadOverrides("UserData/BossReforged/MonsterOverrides.json");
+            MonsterOverrides = MonsterOverrideLoader.LoadOverrides();
             MonsterFullReplaces = new();
             LoggerInstance.Msg("Initialized.");
         }

@@ -1,0 +1,15 @@
+# Format:
+# [<MonsterDefineID>]
+# HP=<int>
+# BaseDamage=<int>
+# FullReplace=<other MonsterDefineID>
+#
+# Examples:
+#
+# [50001] # Vikas buff
+# HP=20000
+# BaseDamage=400
+#
+# [99998] # Training dummy replaced by Adrammelech, with increased HP
+# HP=10000
+# FullReplace=50007
